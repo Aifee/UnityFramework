@@ -11,8 +11,8 @@ using System.Collections.Generic;
 
 public sealed class ViewControl : Singleton<ViewControl>, IController
 {
-    protected readonly object syncRoot = new object();
-    protected IDictionary<string, ICommand> commandMap;
+    private object syncRoot = new object();
+    private IDictionary<string, ICommand> commandMap;
 
     public ViewControl() {
         commandMap = new Dictionary<string, ICommand>();

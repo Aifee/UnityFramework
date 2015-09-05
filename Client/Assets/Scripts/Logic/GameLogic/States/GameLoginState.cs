@@ -7,16 +7,18 @@
 using UnityEngine;
 using System.Collections;
 
-/// <summary>
-/// @Summary : The object processing is not destroyed when the scene is switched
-/// @Auther : liuaifei
-/// @Date : 2014.04.22
-/// </summary>
-/// 
-public class DontDestroyMe : MonoBehaviour 
-{
-    void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
+public class GameLoginState : GameState {
+
+    public GameLoginState(StateID id,FSMControl control):base(id,control) {
+
+    }
+    public override void Enter() {
+        
+    }
+    public override void Exit() {
+        
+    }
+    public override void Update(float fDelta) {
+        
     }
 }

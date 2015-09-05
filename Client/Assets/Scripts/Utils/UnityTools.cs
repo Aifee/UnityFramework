@@ -1,3 +1,9 @@
+ï»¿//----------------------------------------------
+//            liuaf UnityFramework
+// Copyright Â© 2015-2025 liuaf Entertainment
+// Created by : Liu Aifei (329737941@qq.com)
+//----------------------------------------------
+
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,16 +15,16 @@ using System.Security.Cryptography;
 using System.Reflection;
 
 /// <summary>
-/// @Summary : ¹¤¾ßÀà°üº¬Í¨ÓÃº¯ÊıÖĞÊ¹ÓÃRPG¿ò¼Ü¡£
-/// @Author £º Liu Aifei
+/// @Summary : å·¥å…·ç±»åŒ…å«é€šç”¨å‡½æ•°ä¸­ä½¿ç”¨RPGæ¡†æ¶ã€‚
+/// @Author ï¼š Liu Aifei
 /// @Date : 2014.04.22
 /// </summary>
 public static class UnityTools
 {
 
-    #region 3d×ø±ê ×é¼ş ¶ÔÏó½Å±¾´¦Àí
+    #region 3dåæ ‡ ç»„ä»¶ å¯¹è±¡è„šæœ¬å¤„ç†
     /// <summary>
-    /// ÔÚÒ»¸öVector3Î»ÖÃÕÒµ½ÖÜÎ§MaxDistance¾àÀëÖĞµÄËùÓĞ×é¼ş
+    /// åœ¨ä¸€ä¸ªVector3ä½ç½®æ‰¾åˆ°å‘¨å›´MaxDistanceè·ç¦»ä¸­çš„æ‰€æœ‰ç»„ä»¶
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="position"></param>
@@ -39,7 +45,7 @@ public static class UnityTools
     }
 
     /// <summary>
-    /// ÔÚÒ»¸ö¶¥µãÉÏÕÒµ½ÖÜÎ§ËùÓĞµÄ×é¼ş£¨³¡¾°ÖĞ´æÔÚµÄ£©
+    /// åœ¨ä¸€ä¸ªé¡¶ç‚¹ä¸Šæ‰¾åˆ°å‘¨å›´æ‰€æœ‰çš„ç»„ä»¶ï¼ˆåœºæ™¯ä¸­å­˜åœ¨çš„ï¼‰
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="position"></param>
@@ -63,7 +69,7 @@ public static class UnityTools
         return closest;
     }
     /// <summary>
-    /// ÔÚÒ»¸ö¶¥µãÉÏÕÒµ½ÖÜÎ§maxDistance¾àÀëÖĞµÄÄ³Ò»¸ö×é¼ş
+    /// åœ¨ä¸€ä¸ªé¡¶ç‚¹ä¸Šæ‰¾åˆ°å‘¨å›´maxDistanceè·ç¦»ä¸­çš„æŸä¸€ä¸ªç»„ä»¶
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="position"></param>
@@ -88,7 +94,7 @@ public static class UnityTools
         return closest;
     }
     /// <summary>
-    /// ²éÕÒÃşÒ»¸ö¶¥µã·¶Î§ÄÚµÄËùÓĞÍ¬Ê±°üº¬T×é¼şºÍK×é¼şµÄ¶ÔÏó
+    /// æŸ¥æ‰¾æ‘¸ä¸€ä¸ªé¡¶ç‚¹èŒƒå›´å†…çš„æ‰€æœ‰åŒæ—¶åŒ…å«Tç»„ä»¶å’ŒKç»„ä»¶çš„å¯¹è±¡
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <typeparam name="K"></typeparam>
@@ -558,7 +564,7 @@ public static class UnityTools
 
 
     /// <summary>
-    /// »ñÈ¡Ò»¸öĞòÁĞ»¯½Å±¾ÖĞÊÇ·ñ´æÔÚÄ³¸öÊôĞÔ
+    /// è·å–ä¸€ä¸ªåºåˆ—åŒ–è„šæœ¬ä¸­æ˜¯å¦å­˜åœ¨æŸä¸ªå±æ€§
     /// </summary>
     /// <param name="info"></param>
     /// <param name="name"></param>
@@ -577,14 +583,14 @@ public static class UnityTools
     }
 
     /// <summary>
-    /// ¿ËÂ¡Ò»¸ö½Å±¾£¬²¢ÉèÖÃÆäÖµºÍ±»¿ËÂ¡½Å±¾Ò»Ñù
+    /// å…‹éš†ä¸€ä¸ªè„šæœ¬ï¼Œå¹¶è®¾ç½®å…¶å€¼å’Œè¢«å…‹éš†è„šæœ¬ä¸€æ ·
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="t"></param>
     /// <returns></returns>
     public static T GetReflection<T>(T t) where T : new()
     {
-        Type type = typeof(T); //»ñÈ¡MyClassµÄÀàĞÍĞÅÏ¢
+        Type type = typeof(T); //è·å–MyClassçš„ç±»å‹ä¿¡æ¯
         T temp = new T();
 
         FieldInfo[] fieldArray = type.GetFields();
@@ -640,7 +646,7 @@ public static class UnityTools
 
     private static string _projectPath;
     /// <summary>
-    /// »ñÈ¡ÏîÄ¿¾ø¶ÔÂ·¾¶
+    /// è·å–é¡¹ç›®ç»å¯¹è·¯å¾„
     /// </summary>
     public static string FullProjectPath
     {
@@ -655,9 +661,9 @@ public static class UnityTools
         }
     }
     /// <summary>
-    /// ¼ì²âÖÆ¶¨ÎÄ¼şÂ·¾¶ÊÇ·ñ´æÔÚ
+    /// æ£€æµ‹åˆ¶å®šæ–‡ä»¶è·¯å¾„æ˜¯å¦å­˜åœ¨
     /// </summary>
-    /// <param name="filePath"> Ïà¶ÔÂ·¾¶("Assets" Ä¿Â¼) </param>
+    /// <param name="filePath"> ç›¸å¯¹è·¯å¾„("Assets" ç›®å½•) </param>
     /// <returns></returns>
     public static bool RelativeFileExist(string filePath)
     {
@@ -666,7 +672,7 @@ public static class UnityTools
         return exist;
     }
     /// <summary>
-    /// Èç¹û´æÔÚµÄÂ·¾¶(Â·¾¶Ó¦¸Ã¿ªÊ¼Óë¡°Assets¡±)
+    /// å¦‚æœå­˜åœ¨çš„è·¯å¾„(è·¯å¾„åº”è¯¥å¼€å§‹ä¸â€œAssetsâ€)
     /// </summary>
     /// <param name="path"></param>
     /// <returns></returns>
@@ -684,7 +690,7 @@ public static class UnityTools
     #region Formula Tools
 
     /// <summary>
-    /// ½«Ò»¸öintÖ»×ª»»³ÉÓ¢ÖÆ×Ö·û´®
+    /// å°†ä¸€ä¸ªintåªè½¬æ¢æˆè‹±åˆ¶å­—ç¬¦ä¸²
     /// </summary>
     /// <param name="arg"></param>
     /// <returns></returns>

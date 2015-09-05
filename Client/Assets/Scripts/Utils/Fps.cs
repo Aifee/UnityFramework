@@ -1,7 +1,13 @@
-﻿using System;
+﻿//----------------------------------------------
+//            liuaf UnityFramework
+// Copyright © 2015-2025 liuaf Entertainment
+// Created by : Liu Aifei (329737941@qq.com)
+//----------------------------------------------
+
+using System;
 using UnityEngine;
 
-public class Fps : MonoBehaviour
+public class FPS : MonoBehaviour
 {
     public string ex_string;
     private int frame_count;
