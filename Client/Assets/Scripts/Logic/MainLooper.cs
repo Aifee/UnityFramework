@@ -15,7 +15,6 @@ public class MainLooper : MonoBehaviour {
         //gameObject.AddComponent<Client>();
         gameObject.AddComponent<DontDestroyMe>();
         //gameObject.AddComponent<ResourcesManager>();
-
         //UIManager.Instance.ShowView<LoginView>("LoginView");
 	}
 	

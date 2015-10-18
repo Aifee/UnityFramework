@@ -9,7 +9,6 @@ using System.Collections;
 using System.Collections.Generic;
 
 public sealed class Bundle {
-
     private Dictionary<string, System.Object> _Data = new Dictionary<string, System.Object>();
 
     public static Bundle Create<T>(string key, T val) {
@@ -36,6 +35,10 @@ public sealed class Bundle {
         System.Object obj;
         return _Data.TryGetValue(key, out obj) && (obj is T);
     }
+
+	public int Count(){
+		return _Data.Count;
+	}
 
     public void Remove(string key) {
         if (ContainsKey(key))
