@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Event : IEvent {
+public class LiuafEvent : IEvent {
 
     protected string name;
     protected string message;
