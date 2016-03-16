@@ -1,6 +1,6 @@
 <files version="album1">
-  <Item file="2bd3950a6d08ddc6d56fcb4070c8e698.ab" size="11413" />
-  <Item file="2bd3950a6d08ddc6d56fcb4070c8e698.ab.manifest" size="743" />
-  <Item file="Assetbundles" size="923" />
-  <Item file="Assetbundles.manifest" size="147" />
+  <Item path="2bd3950a6d08ddc6d56fcb4070c8e698.ab" md5="" size="11413" />
+  <Item path="2bd3950a6d08ddc6d56fcb4070c8e698.ab.manifest" md5="" size="743" />
+  <Item path="Assetbundles" md5="" size="923" />
+  <Item path="Assetbundles.manifest" md5="" size="147" />
 </files>

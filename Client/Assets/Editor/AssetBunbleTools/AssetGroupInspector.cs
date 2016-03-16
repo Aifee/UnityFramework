@@ -124,5 +124,6 @@ public class AssetGroupInspector : EditorSingleton<AssetGroupInspector> {
     private string GetObjectType(Object o) {
         string type = o.GetType().ToString();
         return type.Substring(12);
+
     }
 }
