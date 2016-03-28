@@ -26,51 +26,51 @@ public class ExcelTool : EditorWindow {
     public static ExcelTool instance;
     /// <summary> 路径是否允许编辑 </summary>
     private bool pathEditor = true;
-    private ConfigManager.ConfigType configType;
+    //private ConfigManager.ConfigType configType;
     /// <summary> 加载excel文件类型 </summary>
     private List<string> ExcelType = new List<string>(new string[]{".xlsx",".xls"});
 
 
-    private string ValueTypeToString(ConfigManager.PropertiesType type) {
-        string ret = null;
-        switch (type) {
-            case ConfigManager.PropertiesType.Unknown: break;
-            case ConfigManager.PropertiesType.INT: ret = "int"; break;
-            case ConfigManager.PropertiesType.FLOAT: ret = "float"; break;
-            case ConfigManager.PropertiesType.STR: ret = "string"; break;
-            case ConfigManager.PropertiesType.LIST_INT: ret = "List<int>"; break;
-            case ConfigManager.PropertiesType.LIST_STR: ret = "List<string>"; break;
-            case ConfigManager.PropertiesType.LIST_FLOAT: ret = "List<float>"; break;
-            case ConfigManager.PropertiesType.LIST_DICT_INT_INT: ret = "List<Dictionary<int,int>>"; break;
-            case ConfigManager.PropertiesType.LIST_DICT_INT_STR: ret = "List<Dictionary<int,string>>"; break;
-            case ConfigManager.PropertiesType.LIST_DICT_INT_FLOAT: ret = "List<Dictionary<int,float>>"; break;
-            case ConfigManager.PropertiesType.LIST_DICT_STR_STR: ret = "List<Dictionary<string,string>>"; break;
-            case ConfigManager.PropertiesType.LIST_DICT_STR_INT: ret = "List<Dictionary<string,int>>"; break;
-            case ConfigManager.PropertiesType.LIST_DICT_STR_FLOAT: ret = "List<Dictionary<string,float>>"; break;
-            case ConfigManager.PropertiesType.LIST_DICT_FLOAT_FLOAT: ret = "List<Dictionary<float,float>>"; break;
-            case ConfigManager.PropertiesType.LIST_DICT_FLOAT_INT: ret = "List<Dictionary<float,int>>"; break;
-            case ConfigManager.PropertiesType.LIST_DICT_FLOAT_STR: ret = "List<Dictionary<float,string>>"; break;
-            case ConfigManager.PropertiesType.DICT_INT_INT: ret = "Dictionary<int,int>"; break;
-            case ConfigManager.PropertiesType.DICT_INT_STR: ret = "Dictionary<int,string>"; break;
-            case ConfigManager.PropertiesType.DICT_INT_FLOAT: ret = "Dictionary<int,float>"; break;
-            case ConfigManager.PropertiesType.DICT_INT_LIST_INT: ret = "Dictionary<int,List<int>>"; break;
-            case ConfigManager.PropertiesType.DICT_INT_LIST_STR: ret = "Dictionary<int,List<string>>"; break;
-            case ConfigManager.PropertiesType.DICT_INT_LIST_FLOAT: ret = "Dictionary<int,List<float>>"; break;
-            case ConfigManager.PropertiesType.DICT_STR_STR: ret = "Dictionary<string,string>"; break;
-            case ConfigManager.PropertiesType.DICT_STR_INT: ret = "Dictionary<string,int>"; break;
-            case ConfigManager.PropertiesType.DICT_STR_FLOAT: ret = "Dictionary<string,float>"; break;
-            case ConfigManager.PropertiesType.DICT_STR_LIST_INT: ret = "Dictionary<string,List<int>>"; break;
-            case ConfigManager.PropertiesType.DICT_STR_LIST_STR: ret = "Dictionary<string,List<string>>"; break;
-            case ConfigManager.PropertiesType.DICT_STR_LIST_FLOAT: ret = "Dictionary<string,List<float>>"; break;
-            case ConfigManager.PropertiesType.DICT_FLOAT_FLOAT: ret = "Dictionary<float,float>"; break;
-            case ConfigManager.PropertiesType.DICT_FLOAT_INT: ret = "Dictionary<float,int>"; break;
-            case ConfigManager.PropertiesType.DICT_FLOAT_STR: ret = "Dictionary<float,string>"; break;
-            case ConfigManager.PropertiesType.DICT_FLOAT_LIST_INT: ret = "Dictionary<float,List<int>>"; break;
-            case ConfigManager.PropertiesType.DICT_FLOAT_LIST_STR: ret = "Dictionary<float,List<string>>"; break;
-            case ConfigManager.PropertiesType.DICT_FLOAT_LIST_FLOAT: ret = "Dictionary<float,List<float>>"; break;
-        }
-        return ret;
-    }
+    //private string ValueTypeToString(ConfigManager.PropertiesType type) {
+    //    string ret = null;
+    //    switch (type) {
+    //        case ConfigManager.PropertiesType.Unknown: break;
+    //        case ConfigManager.PropertiesType.INT: ret = "int"; break;
+    //        case ConfigManager.PropertiesType.FLOAT: ret = "float"; break;
+    //        case ConfigManager.PropertiesType.STR: ret = "string"; break;
+    //        case ConfigManager.PropertiesType.LIST_INT: ret = "List<int>"; break;
+    //        case ConfigManager.PropertiesType.LIST_STR: ret = "List<string>"; break;
+    //        case ConfigManager.PropertiesType.LIST_FLOAT: ret = "List<float>"; break;
+    //        case ConfigManager.PropertiesType.LIST_DICT_INT_INT: ret = "List<Dictionary<int,int>>"; break;
+    //        case ConfigManager.PropertiesType.LIST_DICT_INT_STR: ret = "List<Dictionary<int,string>>"; break;
+    //        case ConfigManager.PropertiesType.LIST_DICT_INT_FLOAT: ret = "List<Dictionary<int,float>>"; break;
+    //        case ConfigManager.PropertiesType.LIST_DICT_STR_STR: ret = "List<Dictionary<string,string>>"; break;
+    //        case ConfigManager.PropertiesType.LIST_DICT_STR_INT: ret = "List<Dictionary<string,int>>"; break;
+    //        case ConfigManager.PropertiesType.LIST_DICT_STR_FLOAT: ret = "List<Dictionary<string,float>>"; break;
+    //        case ConfigManager.PropertiesType.LIST_DICT_FLOAT_FLOAT: ret = "List<Dictionary<float,float>>"; break;
+    //        case ConfigManager.PropertiesType.LIST_DICT_FLOAT_INT: ret = "List<Dictionary<float,int>>"; break;
+    //        case ConfigManager.PropertiesType.LIST_DICT_FLOAT_STR: ret = "List<Dictionary<float,string>>"; break;
+    //        case ConfigManager.PropertiesType.DICT_INT_INT: ret = "Dictionary<int,int>"; break;
+    //        case ConfigManager.PropertiesType.DICT_INT_STR: ret = "Dictionary<int,string>"; break;
+    //        case ConfigManager.PropertiesType.DICT_INT_FLOAT: ret = "Dictionary<int,float>"; break;
+    //        case ConfigManager.PropertiesType.DICT_INT_LIST_INT: ret = "Dictionary<int,List<int>>"; break;
+    //        case ConfigManager.PropertiesType.DICT_INT_LIST_STR: ret = "Dictionary<int,List<string>>"; break;
+    //        case ConfigManager.PropertiesType.DICT_INT_LIST_FLOAT: ret = "Dictionary<int,List<float>>"; break;
+    //        case ConfigManager.PropertiesType.DICT_STR_STR: ret = "Dictionary<string,string>"; break;
+    //        case ConfigManager.PropertiesType.DICT_STR_INT: ret = "Dictionary<string,int>"; break;
+    //        case ConfigManager.PropertiesType.DICT_STR_FLOAT: ret = "Dictionary<string,float>"; break;
+    //        case ConfigManager.PropertiesType.DICT_STR_LIST_INT: ret = "Dictionary<string,List<int>>"; break;
+    //        case ConfigManager.PropertiesType.DICT_STR_LIST_STR: ret = "Dictionary<string,List<string>>"; break;
+    //        case ConfigManager.PropertiesType.DICT_STR_LIST_FLOAT: ret = "Dictionary<string,List<float>>"; break;
+    //        case ConfigManager.PropertiesType.DICT_FLOAT_FLOAT: ret = "Dictionary<float,float>"; break;
+    //        case ConfigManager.PropertiesType.DICT_FLOAT_INT: ret = "Dictionary<float,int>"; break;
+    //        case ConfigManager.PropertiesType.DICT_FLOAT_STR: ret = "Dictionary<float,string>"; break;
+    //        case ConfigManager.PropertiesType.DICT_FLOAT_LIST_INT: ret = "Dictionary<float,List<int>>"; break;
+    //        case ConfigManager.PropertiesType.DICT_FLOAT_LIST_STR: ret = "Dictionary<float,List<string>>"; break;
+    //        case ConfigManager.PropertiesType.DICT_FLOAT_LIST_FLOAT: ret = "Dictionary<float,List<float>>"; break;
+    //    }
+    //    return ret;
+    //}
 
 
     private void ProcessExcel() {
@@ -101,13 +101,13 @@ public class ExcelTool : EditorWindow {
             string csName = Path.GetFileNameWithoutExtension(file) + "Data";
             string excelData = Path.GetFileNameWithoutExtension(file) + "Config";
             CreateCSFile(csName, table, excelData);
-            if (configType == ConfigManager.ConfigType.Xml) {
-                CreateXML(excelData,table);
-            } else if (configType == ConfigManager.ConfigType.Json) {
-                CreateJson(excelData, table);
-            } else if (configType == ConfigManager.ConfigType.Csv) {
-                CreateCsv(excelData, table);
-            }
+            //if (configType == ConfigManager.ConfigType.Xml) {
+            //    CreateXML(excelData,table);
+            //} else if (configType == ConfigManager.ConfigType.Json) {
+            //    CreateJson(excelData, table);
+            //} else if (configType == ConfigManager.ConfigType.Csv) {
+            //    CreateCsv(excelData, table);
+            //}
         }
 
     }
@@ -138,29 +138,29 @@ public class ExcelTool : EditorWindow {
         int columns = table.Columns.Count;
         string[] explains = new string[columns];
         string[] fieldNames = new string[columns];
-        ConfigManager.PropertiesType[] fieldTypes = new ConfigManager.PropertiesType[columns];
-        DataRow rowExplain = table.Rows[0];
-        DataRow rowTitles = table.Rows[1];
-        DataRow rowTypes = table.Rows[2];
-        for (int i = 0; i < columns; i++) {
-            explains[i] = rowExplain[i].ToString();
-            fieldNames[i] = rowTitles[i].ToString();
-            ConfigManager.PropertiesType valueType = ConfigManager.StringToValueType(rowTypes[i].ToString());
-            if (valueType == ConfigManager.PropertiesType.Unknown) {
-                Debug.LogError(string.Format("Unknown Value Type '{0}' !", rowTypes[i].ToString()));
-                continue;
-            }
-            fieldTypes[i] = valueType;
-            content.AppendLine("    /// <summary>");
-            content.AppendLine(string.Format("    /// {0}", explains[i]));
-            content.AppendLine("    /// <summary>");
-            content.AppendLine(string.Format("    public {0} {1};", ValueTypeToString(fieldTypes[i]), fieldNames[i]));
-        }
-        content.AppendLine("}");
+        //ConfigManager.PropertiesType[] fieldTypes = new ConfigManager.PropertiesType[columns];
+        //DataRow rowExplain = table.Rows[0];
+        //DataRow rowTitles = table.Rows[1];
+        //DataRow rowTypes = table.Rows[2];
+        //for (int i = 0; i < columns; i++) {
+        //    explains[i] = rowExplain[i].ToString();
+        //    fieldNames[i] = rowTitles[i].ToString();
+        //    ConfigManager.PropertiesType valueType = ConfigManager.StringToValueType(rowTypes[i].ToString());
+        //    if (valueType == ConfigManager.PropertiesType.Unknown) {
+        //        Debug.LogError(string.Format("Unknown Value Type '{0}' !", rowTypes[i].ToString()));
+        //        continue;
+        //    }
+        //    fieldTypes[i] = valueType;
+        //    content.AppendLine("    /// <summary>");
+        //    content.AppendLine(string.Format("    /// {0}", explains[i]));
+        //    content.AppendLine("    /// <summary>");
+        //    content.AppendLine(string.Format("    public {0} {1};", ValueTypeToString(fieldTypes[i]), fieldNames[i]));
+        //}
+        //content.AppendLine("}");
 
-        if (!Directory.Exists(PATH_CS)) {
-            Directory.CreateDirectory(PATH_CS);
-        }
+        //if (!Directory.Exists(PATH_CS)) {
+        //    Directory.CreateDirectory(PATH_CS);
+        //}
 
         File.WriteAllText(string.Concat(PATH_CS + "/", className, ".cs"), content.ToString(), Encoding.UTF8);
     }
@@ -184,13 +184,13 @@ public class ExcelTool : EditorWindow {
         for (int i = 3; i < rowIndex; i++) {
             XmlElement element = doc.CreateElement("Item");
             for (int j = 0; j < columns; j++) {
-                ConfigManager.PropertiesType valueType = ConfigManager.StringToValueType(rowTypes[j].ToString());
-                if (valueType == ConfigManager.PropertiesType.Unknown) {
-                    Debug.LogError(string.Format("Unknown Value Type '{0}' !", rowTypes[i].ToString()));
-                    continue;
-                }
-                root.SetAttribute(rowTitles[j].ToString(), rowTypes[j].ToString());
-                element.SetAttribute(rowTitles[j].ToString(), table.Rows[i][j].ToString());
+                //ConfigManager.PropertiesType valueType = ConfigManager.StringToValueType(rowTypes[j].ToString());
+                //if (valueType == ConfigManager.PropertiesType.Unknown) {
+                //    Debug.LogError(string.Format("Unknown Value Type '{0}' !", rowTypes[i].ToString()));
+                //    continue;
+                //}
+                //root.SetAttribute(rowTitles[j].ToString(), rowTypes[j].ToString());
+                //element.SetAttribute(rowTitles[j].ToString(), table.Rows[i][j].ToString());
             }
             root.AppendChild(element);
         }
@@ -215,34 +215,34 @@ public class ExcelTool : EditorWindow {
         DataRow rowTitles = table.Rows[1];
         DataRow rowTypes = table.Rows[2];
         for (int i = 0; i < columns; i++) {
-            ConfigManager.PropertiesType valueType = ConfigManager.StringToValueType(rowTypes[i].ToString());
-            if (valueType == ConfigManager.PropertiesType.Unknown) {
-                Debug.LogError(string.Format("Unknown Value Type '{0}' !", rowTypes[i].ToString()));
-                continue;
-            }
-            typeDic.Add(rowTitles[i].ToString(), rowTypes[i].ToString());
+            //ConfigManager.PropertiesType valueType = ConfigManager.StringToValueType(rowTypes[i].ToString());
+            //if (valueType == ConfigManager.PropertiesType.Unknown) {
+            //    Debug.LogError(string.Format("Unknown Value Type '{0}' !", rowTypes[i].ToString()));
+            //    continue;
+            //}
+            //typeDic.Add(rowTitles[i].ToString(), rowTypes[i].ToString());
         }
         List<object> list = new List<object>();
         for (int i = 3; i < rowIndex; i++) {
             Dictionary<string, object> dic = new Dictionary<string, object>();
             for (int j = 0; j < columns; j++) {
-                ConfigManager.PropertiesType valueType = ConfigManager.StringToValueType(rowTypes[j].ToString());
-                if (valueType == ConfigManager.PropertiesType.Unknown) {
-                    Debug.LogError(string.Format("Unknown Value Type '{0}' !", rowTypes[i].ToString()));
-                    continue;
-                }
-                dic.Add(rowTitles[j].ToString(), table.Rows[i][j].ToString());
+                //ConfigManager.PropertiesType valueType = ConfigManager.StringToValueType(rowTypes[j].ToString());
+                //if (valueType == ConfigManager.PropertiesType.Unknown) {
+                //    Debug.LogError(string.Format("Unknown Value Type '{0}' !", rowTypes[i].ToString()));
+                //    continue;
+                //}
+                //dic.Add(rowTitles[j].ToString(), table.Rows[i][j].ToString());
             }
             list.Add(dic);
         }
         jsonDic.Add("Type",typeDic);
         jsonDic.Add("Data",list);
-        string json = MiniJSON.Json.Serialize(jsonDic);
-        json = System.Text.RegularExpressions.Regex.Unescape(json);
-        if (!Directory.Exists(PATH_DATA)) {
-            Directory.CreateDirectory(PATH_DATA);
-        }
-        File.WriteAllText(string.Concat(PATH_DATA + "/", jsonName, ".json"), json, Encoding.UTF8);
+        //string json = MiniJSON.Json.Serialize(jsonDic);
+        //json = System.Text.RegularExpressions.Regex.Unescape(json);
+        //if (!Directory.Exists(PATH_DATA)) {
+        //    Directory.CreateDirectory(PATH_DATA);
+        //}
+        //File.WriteAllText(string.Concat(PATH_DATA + "/", jsonName, ".json"), json, Encoding.UTF8);
     }
     /// <summary>
     /// 生成CSV文件
@@ -259,14 +259,14 @@ public class ExcelTool : EditorWindow {
         for (int i = 0; i < rowIndex; i++) {
             string item = "";
             for (int j = 0; j < columns; j++) {
-                ConfigManager.PropertiesType valueType = ConfigManager.StringToValueType(rowTypes[j].ToString());
-                if (valueType == ConfigManager.PropertiesType.Unknown) {
-                    Debug.LogError(string.Format("Unknown Value Type '{0}' !", rowTypes[i].ToString()));
-                    continue;
-                }
-                item += table.Rows[i][j].ToString();
-                if (j < columns - 1)
-                    item += "|";
+                //ConfigManager.PropertiesType valueType = ConfigManager.StringToValueType(rowTypes[j].ToString());
+                //if (valueType == ConfigManager.PropertiesType.Unknown) {
+                //    Debug.LogError(string.Format("Unknown Value Type '{0}' !", rowTypes[i].ToString()));
+                //    continue;
+                //}
+                //item += table.Rows[i][j].ToString();
+                //if (j < columns - 1)
+                //    item += "|";
             }
             content.AppendLine(item);
         }
@@ -279,7 +279,7 @@ public class ExcelTool : EditorWindow {
     void OnEnable() 
     {
         instance = this;
-        configType = ConfigManager.ConfigType.Xml;
+        //configType = ConfigManager.ConfigType.Xml;
     }
     void OnDisable() { instance = null; }
 
@@ -317,7 +317,7 @@ public class ExcelTool : EditorWindow {
                 EditorGUI.BeginDisabledGroup(pathEditor);
                 PATH_DATA = GUILayout.TextField(PATH_DATA);
                 EditorGUI.EndDisabledGroup();
-                configType = (ConfigManager.ConfigType)EditorGUILayout.EnumPopup("DataType", configType, GUILayout.Width(200f));
+                //configType = (ConfigManager.ConfigType)EditorGUILayout.EnumPopup("DataType", configType, GUILayout.Width(200f));
                 if (GUILayout.Button("Open data Folder", GUILayout.Width(120f))) {
                     PATH_DATA = EditorUtility.OpenFolderPanel("Select data file folder", PATH_DATA, "");
                 }

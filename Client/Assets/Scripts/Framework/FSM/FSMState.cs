@@ -1,12 +1,6 @@
-﻿//----------------------------------------------
-//            liuaf UnityFramework
-// Copyright © 2015-2025 liuaf Entertainment
-// Created by : Liu Aifei (329737941@qq.com)
-//----------------------------------------------
-
 using System;
 
-public class FSMState
+public class FSMState : IFSMState
 {
     protected StateID stateId;
     protected FSMControl control;
@@ -39,4 +33,6 @@ public class FSMState
     public virtual void Update(float fDelta)
     {
     }
+
+
 }

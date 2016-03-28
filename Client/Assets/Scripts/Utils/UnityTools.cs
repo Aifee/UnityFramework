@@ -1,25 +1,19 @@
 ﻿//----------------------------------------------
-//            liuaf UnityFramework
-// Copyright © 2015-2025 liuaf Entertainment
+//            liuaf threeKingdoms Project
+// Copyright © 2010-2015 threeKingdoms
 // Created by : Liu Aifei (329737941@qq.com)
-//----------------------------------------------
-
+//--------------------------------------------
 using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.IO;
-using System;
-using System.Text;
-using System.Security.Cryptography;
-using System.Reflection;
 
 /// <summary>
-/// @Summary : 工具类包含通用函数中使用RPG框架。
+/// @Summary : 
 /// @Author ： Liu Aifei
 /// @Date : 2014.04.22
 /// </summary>
-public static class UnityTools
+public sealed class UnityTools
 {
 
     #region 3d坐标 组件 对象脚本处理
@@ -563,185 +557,12 @@ public static class UnityTools
     }
 
 
-    /// <summary>
-    /// 获取一个序列化脚本中是否存在某个属性
-    /// </summary>
-    /// <param name="info"></param>
-    /// <param name="name"></param>
-    /// <returns></returns>
-    public static bool ContainsValue(this SerializationInfo info, string name)
-    {
-        SerializationInfoEnumerator e = info.GetEnumerator();
-        while (e.MoveNext())
-        {
-            if (e.Name == name)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /// <summary>
-    /// 克隆一个脚本，并设置其值和被克隆脚本一样
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="t"></param>
-    /// <returns></returns>
-    public static T GetReflection<T>(T t) where T : new()
-    {
-        Type type = typeof(T); //获取MyClass的类型信息
-        T temp = new T();
-
-        FieldInfo[] fieldArray = type.GetFields();
-        foreach (FieldInfo file in fieldArray)
-        {
-            object obj = t.GetType().GetField(file.Name).GetValue(t);
-            temp.GetType().GetField(file.Name).SetValue(temp, obj);
-        }
-        return temp;
-    }
 
     #endregion 
 
-    //========================================================================================================================
 
-    #region Coroutine tools
 
-    /// <summary>
-    /// Starts the coroutine in a non MonoBehaviour class
-    /// </summary>
-    /// <returns>
-    /// The coroutine.
-    /// </returns>
-    /// <param name='routine'>
-    /// Routine.
-    /// </param>
-    public static Coroutine StartCoroutine(IEnumerator routine)
-    {
-        return StartCoroutine(routine, "Coroutine", false);
-    }
 
-    public static Coroutine StartCoroutine(IEnumerator routine, string routineName)
-    {
-        return StartCoroutine(routine, "Coroutine-" + routineName, false);
-    }
-
-    public static Coroutine StartCoroutine(IEnumerator routine, string routineName, bool dontDestroyOnLoad)
-    {
-        GameObject routineHandlerObject = new GameObject(routineName);
-        CoroutineInstance routineHandler = routineHandlerObject.AddComponent<CoroutineInstance>();
-        if (dontDestroyOnLoad)
-        {
-            GameObject.DontDestroyOnLoad(routineHandlerObject.gameObject);
-        }
-        return routineHandler.ProcessWork(routine);
-    }
-
-    #endregion 
-
-    //========================================================================================================================
-
-    #region path tools
-
-    private static string _projectPath;
-    /// <summary>
-    /// 获取项目绝对路径
-    /// </summary>
-    public static string FullProjectPath
-    {
-        get
-        {
-            if (_projectPath == null || _projectPath.Equals(""))
-            {
-                _projectPath = Application.dataPath;
-                _projectPath = _projectPath.Substring(0, _projectPath.LastIndexOf("Assets"));
-            }
-            return _projectPath;
-        }
-    }
-    /// <summary>
-    /// 检测制定文件路径是否存在
-    /// </summary>
-    /// <param name="filePath"> 相对路径("Assets" 目录) </param>
-    /// <returns></returns>
-    public static bool RelativeFileExist(string filePath)
-    {
-        filePath = FullProjectPath + "/" + filePath;
-        bool exist = File.Exists(filePath);
-        return exist;
-    }
-    /// <summary>
-    /// 如果存在的路径(路径应该开始与“Assets”)
-    /// </summary>
-    /// <param name="path"></param>
-    /// <returns></returns>
-    public static bool RelativePathExist(string path)
-    {
-        path = FullProjectPath + "/" + path;
-        bool exist = Directory.Exists(path);
-        return exist;
-    }
-
-    #endregion 
-
-    //========================================================================================================================
-
-    #region Formula Tools
-
-    /// <summary>
-    /// 将一个int只转换成英制字符串
-    /// </summary>
-    /// <param name="arg"></param>
-    /// <returns></returns>
-    public static string BritishSystem(int arg)
-    {
-        string british = arg.ToString();
-        int i = british.Length;
-        while (true)
-        {
-            i -= 3;
-            if (i <= 0)
-            {
-                break;
-            }
-            british = british.Insert(i, ",");
-        }
-        return british;
-    }
-
-    #endregion
-
-    //========================================================================================================================
-
-    #region MD5
-
-    /// <summary>
-    /// MD5 String
-    /// </summary>
-    /// <returns>
-    public static string MD5(string str)
-    {
-        byte[] b = Encoding.Default.GetBytes(str);
-        MD5 md5 = new MD5CryptoServiceProvider();
-        byte[] c = md5.ComputeHash(b);
-        return System.BitConverter.ToString(c).Replace("-", "");
-    }
-
-    #endregion 
 
 }
 
-public class CoroutineInstance : MonoBehaviour
-{
-    public Coroutine ProcessWork(IEnumerator routine)
-    {
-        return StartCoroutine(DestroyWhenComplete(routine));
-    }
-
-    public IEnumerator DestroyWhenComplete(IEnumerator routine)
-    {
-        yield return StartCoroutine(routine);
-        Destroy(gameObject);
-    }
-}

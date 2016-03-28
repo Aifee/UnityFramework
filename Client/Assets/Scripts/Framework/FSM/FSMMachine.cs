@@ -1,23 +1,17 @@
-﻿//----------------------------------------------
-//            liuaf UnityFramework
-// Copyright © 2015-2025 liuaf Entertainment
-// Created by : Liu Aifei (329737941@qq.com)
-//----------------------------------------------
-
 using System;
 using UnityEngine;
 using System.Collections.Generic;
 
-public class FSMMachine
+public class FSMMachine : IFSMMachine
 {
-    private StateID stateId;
-    private FSMState currentState;
-    private FSMState defaultState;
-    private FSMState goalState;
-    private List<FSMState> m_lsStates = new List<FSMState>();
-    private Queue<StateID> switchQueue = new Queue<StateID>();
+    protected StateID stateId;
+    protected IFSMState currentState;
+    protected IFSMState defaultState;
+    protected IFSMState goalState;
+    protected List<IFSMState> m_lsStates = new List<IFSMState>();
+    protected Queue<StateID> switchQueue = new Queue<StateID>();
 
-    public virtual void AddState(FSMState kState)
+    public virtual void AddState(IFSMState kState)
     {
         this.m_lsStates.Add(kState);
     }
@@ -25,7 +19,7 @@ public class FSMMachine
     public void SwitchState(StateID id) {
         switchQueue.Enqueue(id);
     }
-    public FSMState GetCurrentState()
+    public virtual IFSMState GetCurrentState()
     {
         return currentState;
     }
@@ -35,9 +29,9 @@ public class FSMMachine
         return currentState.GetID();
     }
 
-    public virtual FSMState GetState(StateID eID)
+    public virtual IFSMState GetState(StateID eID)
     {
-        foreach (FSMState state in this.m_lsStates)
+        foreach (IFSMState state in this.m_lsStates)
         {
             if (state.GetID() == eID)
             {
@@ -47,7 +41,7 @@ public class FSMMachine
         return null;
     }
 
-    public virtual void SetDefaultState(FSMState kState)
+    public virtual void SetDefaultState(IFSMState kState)
     {
         defaultState = kState;
     }
@@ -80,4 +74,9 @@ public class FSMMachine
             }
         }
     }
+    public virtual void Update(float fDelta)
+    {
+    }
+
+
 }

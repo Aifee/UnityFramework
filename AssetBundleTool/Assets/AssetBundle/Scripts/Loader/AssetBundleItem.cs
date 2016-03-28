@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 public class AssetBundleItem {
 
-    public AssetBundle Assetbundle { get; private set; }
+    public object Data { get; private set; }
     public string AssetbundleName { get; private set; }
     private int referencedCount;
-
-    public AssetBundleItem(AssetBundle ab,string abName)
+    public System.Type Type { get; private set; }
+    public AssetBundleItem(object obj,string abName)
     {
-        this.Assetbundle = ab;
+        Type = obj.GetType();
+        this.Data = obj;
         this.AssetbundleName = abName;
         this.referencedCount = 1;
     }
@@ -20,10 +22,12 @@ public class AssetBundleItem {
 
     public void Release()
     {
+        if (Type != typeof(AssetBundle))
+            return;
         this.referencedCount--;
         if (this.referencedCount == 0)
         {
-            this.Assetbundle.Unload(false);
+            ((AssetBundle)Data).Unload(false);
         }
     }
     public int RetainCount

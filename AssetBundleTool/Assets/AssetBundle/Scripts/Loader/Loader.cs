@@ -62,7 +62,6 @@ public class Loader : MonoBehaviour,ILoader
     {
 
     }
-
     public T RecourcesLoad<T>(string assetName) where T : UnityEngine.Object
     {
         string path = "";
@@ -86,7 +85,7 @@ public class Loader : MonoBehaviour,ILoader
         path += assetName;
         return Resources.Load<T>(assetName);
     }
-    public void AsynLoad<T>(string assetName, LoaderComplete complete) where T : UnityEngine.Object
+    public void AssetBundleLoad<T>(string assetName, LoaderComplete complete) where T : UnityEngine.Object
     {
         if (completes.ContainsKey(assetName))
         {
@@ -102,6 +101,7 @@ public class Loader : MonoBehaviour,ILoader
         completes.Add(assetName, complete);
         StartCoroutine(AsynLoadSingle<T>(assetName));
     }
+    
     private AssetBundleItem IsLoadedAssetBundle(string assetName)
     {
         AssetBundleItem item = null;
@@ -135,8 +135,28 @@ public class Loader : MonoBehaviour,ILoader
         }
         else
         {
-            Debug.Log(www.text);
-            AssetBundleItem item = new AssetBundleItem(www.assetBundle, assetName);
+            object obj = null;
+            if (typeof(T) == typeof(AssetBundle))
+            {
+                obj = www.assetBundle;
+            }
+            else if (typeof(T) == typeof(TextAsset))
+            {
+                obj = www.text;
+            }
+            else if (typeof(T) == typeof(Texture))
+            {
+                obj = www.texture;
+            }
+            else if (typeof(T) == typeof(AudioClip))
+            {
+                obj = www.audioClip;
+            }
+            else if (typeof(T) == typeof(byte[]))
+            {
+                obj = www.bytes;
+            }
+            AssetBundleItem item = new AssetBundleItem(obj, assetName);
             assetbundles.Add(assetName, item);
             if (manifest == null)
             {

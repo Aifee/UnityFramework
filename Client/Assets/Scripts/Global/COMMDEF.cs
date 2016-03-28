@@ -3,6 +3,8 @@ using System.Collections;
 
 public class COMMDEF
 {
+    public const string MAINCAMERROOT = "CameraRoot";
+    public const string FILE_GAMESTATE_CONFIG = "GameStatesConfigs";
     /// <summary> 配置文本路径 </summary>
     public string PATH_CONFIG = "Config/";
     /// <summary> UI路径 </summary>

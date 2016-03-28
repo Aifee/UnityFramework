@@ -18,7 +18,7 @@ public class VersionManager
         Debug.Log(textAsset.text);
         string url = string.Format("{0}{1}.xml", textAsset.text, VERSIONT_CONFIG);
         Debug.Log("url ＝ " + url);
-        Loader.Instance.AsynLoad<TextAsset>(url, LoadServerConfig);
+        //Loader.Instance.AsynLoad<TextAsset>(url, LoadServerConfig);
     }
     private void LoadServerConfig(string error,AssetBundleItem item)
     {
@@ -28,9 +28,7 @@ public class VersionManager
         }
         else
         {
-            Debug.Log(item.AssetbundleName + "  :  " + item.Assetbundle);
-            TextAsset textAsset = item.Assetbundle.LoadAsset<TextAsset>(VERSIONT_CONFIG);
-            Debug.Log(textAsset.text);
+            Debug.Log(item.AssetbundleName + "  :  " + item.Data);
         }
     }
 }
